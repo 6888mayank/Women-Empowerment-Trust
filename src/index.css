@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-forest: #174D3A;
+    --color-forest-deep: #10382D;
+    --color-ivory: #FAF8F1;
+    --color-gold: #D5A94F;
+    --color-sage: #E5EEE5;
+    --color-charcoal: #252B28;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    background-color: #FAF8F1;
+    color: #252B28;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', 'Manrope', system-ui, sans-serif;
+    color: #10382D;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .bg-glass {
+    background: rgba(250, 248, 241, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  .bg-glass-dark {
+    background: rgba(16, 56, 45, 0.90);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #D5A94F 0%, #E6C47A 50%, #B88D33 100%);
+  }
+
+  .forest-gradient {
+    background: linear-gradient(135deg, #174D3A 0%, #10382D 100%);
+  }
+}
+
+/* Subtle modern animation helpers */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F1;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBDBCB;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #174D3A;
+}
