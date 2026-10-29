@@ -12,7 +12,7 @@ Official web portal for **UNNAYAN JAN VIKAS SAMITI**, a grassroots non-governmen
 - **Working Office Address:** Ward No. 23 Panjabi Para, Mahasamund (C.G.) 493445, India
 - **Contact Numbers:** +91 9826306475, +91 8349921973
 - **Official Email:** unnyan2017@gmail.com
-- **Leadership:** Mrs. Premsheela Baghel (Secretary — M.A. Sociology, MSW, 30 Years Experience)
+- **Leadership:** Dr. Premsheela Baghel (Secretary — M.A. Sociology, MSW, 30 Years Experience)
 - **Track Record:** 20 Years of Grassroots Community Service
 
 ---

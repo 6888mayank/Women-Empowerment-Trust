@@ -35,6 +35,18 @@ export interface ApproachPrinciple {
   iconName: string;
 }
 
+export interface AwardItem {
+  id: string;
+  image: string;
+  titleHi: string;
+  titleEn: string;
+  presentedBy: string;
+  category: 'State Award' | 'Union Minister' | 'NABARD & Banking' | 'Media & Civic' | 'Institutional';
+  year?: string;
+  badge: string;
+  featured?: boolean;
+}
+
 export const ORG_DETAILS = {
   name: "UNNAYAN JAN VIKAS SAMITI",
   shortName: "Unnayan Samiti",
@@ -48,7 +60,7 @@ export const ORG_DETAILS = {
   workingOfficeLine1: "Ward No. 23 Panjabi Para",
   workingOfficeLine2: "Mahasamund (C.G.) 493445",
   pincode: "493445",
-  secretary: "Mrs. Premsheela Baghel",
+  secretary: "Dr. Premsheela Baghel",
   secretaryTitle: "Secretary — Unnayan Jan Vikas Samiti",
   secretaryQualifications: "M.A. Sociology | Master of Social Work (MSW) | 30 Years Experience",
   contactNumbersText: "9826306475, 8349921973",
@@ -438,5 +450,181 @@ export const COMMUNITIES_SERVED = [
     title: "Economically Disadvantaged Households",
     desc: "Families facing seasonal vulnerability, underemployment, and barriers to formal banking and social welfare services.",
     image: "/images/village_welfare.jpg"
+  }
+];
+
+export const AWARDS_LIST: AwardItem[] = [
+  {
+    id: "state-award-avanti-bai-lodhi",
+    image: "/images/awards/award_12_state_award_avanti_bai_lodhi.jpg",
+    titleHi: "छत्तीसगढ़ राज्य अलंकरण - वीरांगना रानी अवंती बाई लोधी स्मृति पुरस्कार",
+    titleEn: "Chhattisgarh State Decoration Award — Veerangana Rani Avanti Bai Lodhi Smriti Puraskar",
+    presentedBy: "माननीय उपराष्ट्रपति / राज्यपाल श्री सी.पी. राधाकृष्णन जी द्वारा प्रदत्त",
+    category: "State Award",
+    year: "5 नवंबर",
+    badge: "सर्वोच्च राज्य अलंकरण (State Award)",
+    featured: true
+  },
+  {
+    id: "renuka-singh-union-minister",
+    image: "/images/awards/award_03_renuka_singh_union_minister.jpg",
+    titleHi: "केन्द्रीय मंत्री श्रीमती रेणुका सिंह द्वारा सम्मान",
+    titleEn: "National Felicitation by Union Minister Smt. Renuka Singh",
+    presentedBy: "मान. श्रीमती रेणुका सिंह (केन्द्रीय राज्य मंत्री, भारत सरकार)",
+    category: "Union Minister",
+    badge: "केन्द्रीय मंत्री सम्मान (Union Ministry)",
+    featured: true
+  },
+  {
+    id: "tankram-verma-minister",
+    image: "/images/awards/award_02_tankram_verma_minister.jpg",
+    titleHi: "खेलकूद, युवा कल्याण, राजस्व एवं आपदा प्रबंधन मंत्री मान. टंकराम वर्मा द्वारा सम्मान पत्र",
+    titleEn: "State Honor Certificate by Cabinet Minister Shri Tank Ram Verma",
+    presentedBy: "मान. टंकराम वर्मा (मंत्री, छत्तीसगढ़ शासन)",
+    category: "State Award",
+    badge: "शासन सम्मान पत्र (Cabinet Minister)",
+    featured: true
+  },
+  {
+    id: "republic-day-food-minister",
+    image: "/images/awards/award_08_republic_day_food_minister.jpg",
+    titleHi: "गणतंत्र दिवस पर मान. दयालदास बघेल (खाद्य एवं जिला प्रभारी मंत्री) द्वारा सम्मान",
+    titleEn: "Republic Day Honor by Food & District Incharge Minister Shri Dayaldas Baghel",
+    presentedBy: "मान. दयालदास बघेल (खाद्य मंत्री, छ.ग. शासन एवं जिला प्रभारी)",
+    category: "State Award",
+    badge: "गणतंत्र दिवस सम्मान (Republic Day)",
+    featured: true
+  },
+  {
+    id: "republic-day-mp-award",
+    image: "/images/awards/award_11_republic_day_mp_award.jpg",
+    titleHi: "गणतंत्र दिवस समारोह में मान. सांसद महोदया द्वारा महिला सशक्तिकरण के उत्कृष्ट कार्य पर सम्मान पत्र",
+    titleEn: "Exemplary Women Empowerment Honor Certificate by Hon. Member of Parliament (MP)",
+    presentedBy: "माननीय सांसद महोदया (Member of Parliament)",
+    category: "State Award",
+    badge: "उत्कृष्ट महिला सशक्तिकरण (MP Honor)",
+    featured: true
+  },
+  {
+    id: "nabard-raipur",
+    image: "/images/awards/award_04_nabard_raipur.jpg",
+    titleHi: "राष्ट्रीय कृषि एवं ग्रामीण विकास बैंक (नाबार्ड) रायपुर (छ.ग.) द्वारा सम्मान",
+    titleEn: "Recognition for Rural & Agrarian Development by NABARD Raipur",
+    presentedBy: "नाबार्ड (National Bank for Agriculture and Rural Development)",
+    category: "NABARD & Banking",
+    badge: "नाबार्ड सम्मान (NABARD Raipur)",
+    featured: true
+  },
+  {
+    id: "womens-day-nabard",
+    image: "/images/awards/award_15_womens_day_nabard.jpg",
+    titleHi: "8 मार्च अंतर्राष्ट्रीय महिला दिवस पर नाबार्ड द्वारा सम्मान",
+    titleEn: "NABARD International Women's Day Recognition for Grassroots Leadership",
+    presentedBy: "नाबार्ड जिला कार्यालय महासमुंद",
+    category: "NABARD & Banking",
+    badge: "नाबार्ड महिला दिवस सम्मान",
+    featured: true
+  },
+  {
+    id: "naika-samman-2024",
+    image: "/images/awards/award_01_naika_samman_2024.jpg",
+    titleHi: "दैनिक समाचार पत्र नई दुनिया द्वारा नायिका सम्मान - 2024",
+    titleEn: "Naika Samman 2024 for Outstanding Women Leadership by NaiDunia National Daily",
+    presentedBy: "नई दुनिया समाचार पत्र समूह",
+    category: "Media & Civic",
+    year: "2024",
+    badge: "नायिका सम्मान 2024 (NaiDunia)",
+    featured: true
+  },
+  {
+    id: "haribhoomi-women-canteen-1",
+    image: "/images/awards/award_17_haribhoomi_women_canteen_1.jpg",
+    titleHi: "हरिभूमि न्यूज़ एजेंसी द्वारा महिला कैंटीन संचालित कर स्वरोजगार से जोड़ने हेतु सम्मान",
+    titleEn: "Haribhoomi News & INH 24x7 Award for Women's Enterprise & Self-Employment",
+    presentedBy: "हरिभूमि मीडिया समूह एवं INH 24x7",
+    category: "Media & Civic",
+    badge: "महिला स्वरोजगार सम्मान (Haribhoomi)",
+    featured: true
+  },
+  {
+    id: "haribhoomi-jila-samvad-2",
+    image: "/images/awards/award_18_haribhoomi_jila_samvad_2.jpg",
+    titleHi: "हरिभूमि एवं INH 24x7 जिला संवाद सम्मान",
+    titleEn: "Haribhoomi & INH 24x7 District Samvad Grassroots Felicitation",
+    presentedBy: "हरिभूमि जिला संवाद मंच, महासमुंद",
+    category: "Media & Civic",
+    badge: "जिला संवाद सम्मान"
+  },
+  {
+    id: "vv-giri-national-labour-institute",
+    image: "/images/awards/award_09_vv_giri_national_labour_institute.jpg",
+    titleHi: "वी.वी. गिरि राष्ट्रीय श्रम संस्थान नोएडा द्वारा सम्मान एवं प्रमाणन",
+    titleEn: "National Labor & Development Certification by V.V. Giri National Labour Institute, Noida",
+    presentedBy: "वी.वी. गिरि राष्ट्रीय श्रम संस्थान (श्रम एवं रोजगार मंत्रालय, भारत सरकार)",
+    category: "Institutional",
+    badge: "राष्ट्रीय संस्थान प्रमाणन (VVGNLI Noida)"
+  },
+  {
+    id: "sahbhagi-shikshan-kendra-lucknow",
+    image: "/images/awards/award_13_sahbhagi_shikshan_kendra_lucknow.jpg",
+    titleHi: "सहभागी शिक्षण केन्द्र लखनऊ द्वारा सम्मान (प्रोग्राम मैनेजमेंट एवं प्रपोजल राइटिंग)",
+    titleEn: "Institutional Training & Recognition by Sahbhagi Shikshan Kendra, Lucknow",
+    presentedBy: "सहभागी शिक्षण केन्द्र (SSK Lucknow / Welthungerhilfe)",
+    category: "Institutional",
+    badge: "प्रोग्राम मैनेजमेंट सम्मान"
+  },
+  {
+    id: "mahila-sahkari-bank",
+    image: "/images/awards/award_10_mahila_sahkari_bank.jpg",
+    titleHi: "महिला नागरिक सहकारी बैंक मर्यादित महासमुंद द्वारा सम्मान",
+    titleEn: "Felicitation by Mahila Nagrik Sahkari Bank Maryadit, Mahasamund",
+    presentedBy: "महिला नागरिक सहकारी बैंक मर्यादित",
+    category: "NABARD & Banking",
+    badge: "सहकारी बैंक सम्मान"
+  },
+  {
+    id: "mla-mahasamund",
+    image: "/images/awards/award_05_mla_mahasamund.jpg",
+    titleHi: "माननीय विधायक महासमुंद द्वारा सम्मान",
+    titleEn: "Legislative Recognition by Hon. Member of Legislative Assembly (MLA), Mahasamund",
+    presentedBy: "मान. विधायक, विधानसभा क्षेत्र महासमुंद",
+    category: "Media & Civic",
+    badge: "विधायक सम्मान"
+  },
+  {
+    id: "womens-day-janpad-gariaband",
+    image: "/images/awards/award_06_womens_day_janpad_gariaband.jpg",
+    titleHi: "8 मार्च अंतर्राष्ट्रीय महिला दिवस पर जनपद अध्यक्ष श्रीमती पुष्पा साहू (फिंगेश्वर, गरियाबंद) द्वारा सम्मान",
+    titleEn: "International Women’s Day Honor by Janpad Panchayat President Smt. Pushpa Sahu, Gariaband",
+    presentedBy: "जनपद पंचायत फिंगेश्वर, जिला गरियाबंद",
+    category: "State Award",
+    badge: "महिला दिवस सम्मान"
+  },
+  {
+    id: "womens-day-nagar-palika",
+    image: "/images/awards/award_07_womens_day_nagar_palika.jpg",
+    titleHi: "8 मार्च अंतर्राष्ट्रीय महिला दिवस के अवसर पर नगर पालिका अध्यक्ष महासमुंद द्वारा सम्मान",
+    titleEn: "International Women’s Day Civic Honor by Municipal Council President, Mahasamund",
+    presentedBy: "नगर पालिका परिषद महासमुंद",
+    category: "Media & Civic",
+    badge: "नगर पालिका सम्मान"
+  },
+  {
+    id: "chief-municipal-officer",
+    image: "/images/awards/award_14_chief_municipal_officer.jpg",
+    titleHi: "मुख्य नगर पालिका अधिकारी द्वारा सम्मान पत्र",
+    titleEn: "Civic Appreciation Certificate by Chief Municipal Officer (CMO), Mahasamund",
+    presentedBy: "कार्यालय मुख्य नगर पालिका अधिकारी महासमुंद",
+    category: "Media & Civic",
+    badge: "मुख्य नगर पालिका अधिकारी सम्मान"
+  },
+  {
+    id: "nagar-palika-president",
+    image: "/images/awards/award_16_nagar_palika_president.jpg",
+    titleHi: "नगर पालिका अध्यक्ष द्वारा सम्मान पत्र",
+    titleEn: "Appreciation Certificate by President, Municipal Council Mahasamund",
+    presentedBy: "नगर पालिका अध्यक्ष, महासमुंद",
+    category: "Media & Civic",
+    badge: "नगर पालिका परिषद सम्मान पत्र"
   }
 ];

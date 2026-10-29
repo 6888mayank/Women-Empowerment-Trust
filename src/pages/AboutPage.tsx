@@ -122,8 +122,8 @@ export default function AboutPage() {
                 />
               </div>
               <div className="p-4 rounded-xl bg-sage/50 border border-forest/15 text-xs text-forest-deep">
-                <span className="font-bold">Grassroots Principle: </span>
-                “A committee for People Participatory & Development action, ensuring that local families lead their own social progress.”
+                <span className="font-bold">Grassroots Leadership: </span>
+                Led by Secretary <strong>Dr. Premsheela Baghel</strong>, recipient of the Chhattisgarh State Decoration Award (वीरांगना रानी अवंती बाई लोधी स्मृति पुरस्कार), with three decades of participatory rural transformation in Mahasamund.
               </div>
             </div>
 

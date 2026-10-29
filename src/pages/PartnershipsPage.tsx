@@ -275,7 +275,7 @@ export default function PartnershipsPage() {
                 Submit a Partnership Inquiry
               </h2>
               <p className="text-charcoal-light text-xs sm:text-sm max-w-2xl">
-                Please provide details regarding your CSR mandate, thematic focus, or grant proposal. Mrs. Premsheela Baghel and our team will respond within 48 hours.
+                Please provide details regarding your CSR mandate, thematic focus, or grant proposal. Dr. Premsheela Baghel and our team will respond within 48 hours.
               </p>
             </div>
 

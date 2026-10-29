@@ -24,9 +24,10 @@ import {
   Compass,
   Phone,
   Mail,
-  MessageSquare
+  MessageSquare,
+  Medal
 } from 'lucide-react';
-import { ORG_DETAILS, CORE_PROGRAMS, CHALLENGES_LIST, APPROACH_PRINCIPLES } from '../data/content';
+import { ORG_DETAILS, CORE_PROGRAMS, CHALLENGES_LIST, APPROACH_PRINCIPLES, AWARDS_LIST } from '../data/content';
 import SEOHead from '../components/SEOHead';
 import ProgramIllustration from '../components/ProgramIllustration';
 
@@ -414,7 +415,7 @@ export default function HomePage() {
               <div className="lg:col-span-5 relative bg-forest-deep h-80 sm:h-96 lg:h-full flex items-center justify-center overflow-hidden">
                 <img
                   src="/images/premsheela_baghel.png"
-                  alt="Mrs. Premsheela Baghel, Secretary of Unnayan Jan Vikas Samiti"
+                  alt="Dr. Premsheela Baghel, Secretary of Unnayan Jan Vikas Samiti"
                   className="w-full h-full object-cover object-top filter brightness-95"
                   onError={(e) => {
                     // Fallback to stylized leader layout if image fails
@@ -447,33 +448,102 @@ export default function HomePage() {
 
                 {/* Verified Credentials */}
                 <div className="flex flex-wrap gap-2 text-xs">
+                  <span className="bg-gold/20 text-gold-dark font-bold px-3 py-1 rounded-lg border border-gold/40 flex items-center gap-1.5">
+                    🏆 छत्तीसगढ़ राज्य अलंकरण (वीरांगना रानी अवंती बाई लोधी पुरस्कार)
+                  </span>
                   <span className="bg-ivory-surface text-forest-deep font-medium px-3 py-1 rounded-lg border border-ivory-border">
                     🎓 M.A. in Sociology
                   </span>
                   <span className="bg-ivory-surface text-forest-deep font-medium px-3 py-1 rounded-lg border border-ivory-border">
                     🎓 Master of Social Work (MSW)
                   </span>
-                  <span className="bg-gold/15 text-gold-dark font-semibold px-3 py-1 rounded-lg border border-gold/30">
-                    ⭐ 30 Years of Social Development Experience
+                  <span className="bg-forest/10 text-forest font-semibold px-3 py-1 rounded-lg border border-forest/20">
+                    ⭐ 30 Years Grassroots Experience
                   </span>
                 </div>
 
                 <p className="text-charcoal-light text-sm sm:text-base leading-relaxed">
-                  Mrs. Premsheela Baghel brings three decades of dedicated grassroots experience in social welfare, women’s empowerment, rural livelihoods, education, social justice, and community welfare in Chhattisgarh. With postgraduate credentials in Sociology and Social Work, she anchors the organization’s commitment to inclusive, participatory transformation.
+                  Dr. Premsheela Baghel brings three decades of dedicated grassroots experience in social welfare, women’s empowerment, rural livelihoods, education, social justice, and community welfare in Chhattisgarh. Honored with the prestigious State Decoration Award by the Hon. Vice President / Governor, she anchors the organization’s commitment to participatory transformation.
                 </p>
 
-                <div className="pt-2 flex items-center gap-4">
+                <div className="pt-2 flex flex-wrap items-center gap-4">
                   <Link
                     to="/leadership"
                     className="inline-flex items-center gap-2 bg-forest hover:bg-forest-hover text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition-all"
                   >
-                    <span>Meet Our Leadership</span>
+                    <span>Meet Leadership & Biography</span>
                     <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    to="/leadership#awards"
+                    className="inline-flex items-center gap-2 text-forest hover:text-gold-dark font-bold text-sm transition-colors"
+                  >
+                    <Medal className="w-4 h-4 text-gold-dark" />
+                    <span>View 18 State Honors</span>
                   </Link>
                 </div>
               </div>
 
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6B. PRESTIGIOUS STATE & NATIONAL RECOGNITIONS SHOWCASE */}
+      <section className="py-20 lg:py-24 bg-sage/20 border-t border-ivory-border relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-forest uppercase tracking-widest bg-sage px-3 py-1 rounded-full border border-forest/20">
+                <Medal className="w-4 h-4 text-forest" />
+                <span>Honors & Validation</span>
+              </div>
+              <h2 className="font-heading font-extrabold text-forest-deep text-2xl sm:text-4xl tracking-tight">
+                प्रतिष्ठित राज्य एवं राष्ट्रीय सम्मान
+              </h2>
+              <p className="text-charcoal-light text-sm sm:text-base leading-relaxed">
+                Recognized at the highest levels of governance including the Chhattisgarh State Decoration Award, Union Ministry felicitations, NABARD honors, and civic citations.
+              </p>
+            </div>
+            <Link
+              to="/leadership#awards"
+              className="inline-flex items-center gap-2 text-forest hover:text-gold-dark font-bold text-sm group shrink-0"
+            >
+              <span>View All 18 State Honors & Citations</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          {/* 6 Featured Award Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {AWARDS_LIST.filter(a => a.featured).slice(0, 6).map((award) => (
+              <Link
+                key={award.id}
+                to="/leadership#awards"
+                className="bg-white rounded-2xl border border-ivory-border shadow-card hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col group"
+              >
+                <div className="relative aspect-[4/3] bg-forest-deep overflow-hidden">
+                  <img
+                    src={award.image}
+                    alt={award.titleHi}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent opacity-60"></div>
+                  <span className="absolute top-3 left-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-forest-deep/90 text-gold-light border border-gold/40 shadow-sm backdrop-blur-sm">
+                    {award.badge}
+                  </span>
+                </div>
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
+                  <h3 className="font-heading font-bold text-forest-deep text-base leading-snug group-hover:text-forest transition-colors line-clamp-2">
+                    {award.titleHi}
+                  </h3>
+                  <p className="text-xs text-charcoal-muted line-clamp-1 border-t border-ivory-border pt-3">
+                    {award.presentedBy}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

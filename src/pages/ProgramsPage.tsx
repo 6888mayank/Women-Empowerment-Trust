@@ -200,7 +200,7 @@ export default function ProgramsPage() {
                       <img
                         src={program.image}
                         alt={`${program.title} activity - Unnayan Jan Vikas Samiti`}
-                        className="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-80 sm:h-96 object-cover object-top group-hover:scale-105 transition-transform duration-700"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = '/images/hero_community.jpg';
                         }}
