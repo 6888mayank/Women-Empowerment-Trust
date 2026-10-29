@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import {
   Users,
@@ -12,9 +12,12 @@ import {
   Target,
   Sparkles,
   Layers,
-  HeartHandshake
+  HeartHandshake,
+  Camera,
+  Maximize2,
+  X
 } from 'lucide-react';
-import { CORE_PROGRAMS, ORG_DETAILS } from '../data/content';
+import { CORE_PROGRAMS, ORG_DETAILS, Program } from '../data/content';
 import SEOHead from '../components/SEOHead';
 
 export default function ProgramsPage() {
@@ -55,9 +58,9 @@ export default function ProgramsPage() {
       <section className="bg-forest-deep text-white py-16 sm:py-24 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
           <img
-            src="/images/skill_development_class.png"
-            alt="Skill development in Chhattisgarh"
-            className="w-full h-full object-cover"
+            src="/images/awards/award_17_haribhoomi_women_canteen_1.jpg"
+            alt="Unnayan Jan Vikas Samiti - Women Leadership and Self Help Groups"
+            className="w-full h-full object-cover object-center"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-forest-deep via-forest-deep/95 to-forest-dark/90"></div>
@@ -194,34 +197,8 @@ export default function ProgramsPage() {
 
                   </div>
 
-                  {/* Photography Area (5 cols) */}
-                  <div className={`lg:col-span-5 space-y-4 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
-                    <div className="relative rounded-2xl overflow-hidden shadow-card border-4 border-white group">
-                      <img
-                        src={program.image}
-                        alt={`${program.title} activity - Unnayan Jan Vikas Samiti`}
-                        className="w-full h-80 sm:h-96 object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/images/hero_community.jpg';
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent"></div>
-                      <div className="absolute bottom-4 left-4 right-4 text-white">
-                        <span className="text-[11px] font-semibold text-gold-light bg-forest/80 backdrop-blur-sm px-2 py-0.5 rounded">
-                          Grassroots Focus
-                        </span>
-                        <p className="text-sm font-bold font-heading mt-1">
-                          {program.title}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Verified Program Context Banner */}
-                    <div className="p-3.5 rounded-xl bg-white border border-ivory-border shadow-subtle text-xs text-charcoal-muted flex items-center justify-between">
-                      <span>Mahasamund District Outreach</span>
-                      <span className="font-semibold text-forest">Grassroots Implemented</span>
-                    </div>
-                  </div>
+                  {/* Interactive PDF Photo Showcase (5 cols) */}
+                  <ProgramPhotoGallery program={program} isEven={isEven} />
 
                 </div>
               </div>
@@ -254,5 +231,175 @@ export default function ProgramsPage() {
         </div>
       </section>
     </>
+  );
+}
+
+/**
+ * Interactive Photo Gallery Component for Each Core Program
+ * Displays authentic field photos & honors extracted directly from the 17-page presentation PDF
+ */
+function ProgramPhotoGallery({ program, isEven }: { program: Program; isEven: boolean }) {
+  const galleryItems = program.gallery && program.gallery.length > 0
+    ? program.gallery
+    : [{ url: program.image, caption: program.awardCaption || program.title }];
+  const [selectedIdx, setSelectedIdx] = useState(0);
+  const activeItem = galleryItems[selectedIdx] || galleryItems[0];
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  return (
+    <div className={`lg:col-span-5 space-y-3 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+      {/* Main Photo Card */}
+      <div className="relative rounded-2xl overflow-hidden shadow-card border-4 border-white group bg-forest-deep">
+        <div className="aspect-[4/3] w-full overflow-hidden relative">
+          <img
+            src={activeItem.url}
+            alt={activeItem.caption || program.title}
+            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+            onClick={() => setLightboxOpen(true)}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = program.image;
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/95 via-forest-deep/25 to-transparent pointer-events-none" />
+
+          {/* Badges on Top */}
+          <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">
+            <span className="text-[11px] font-bold text-gold-light bg-forest-deep/95 border border-gold/40 px-2.5 py-1 rounded-md shadow-sm backdrop-blur-sm">
+              PDF अभिलेख #{selectedIdx + 1}/{galleryItems.length}
+            </span>
+            {program.badge && (
+              <span className="text-[10px] sm:text-[11px] font-bold text-white bg-forest/90 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/20 shadow-sm truncate max-w-[210px]">
+                {program.badge}
+              </span>
+            )}
+          </div>
+
+          {/* Zoom Button in Corner */}
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(true)}
+            className="absolute top-3 right-3 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/95 hover:bg-white text-forest text-xs font-semibold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 z-10 cursor-pointer"
+          >
+            <Maximize2 className="w-3.5 h-3.5" />
+            <span>बड़ा देखें (Zoom Proof)</span>
+          </button>
+
+          {/* Bottom Caption Overlay */}
+          <div className="absolute bottom-3 left-3 right-3 text-white pointer-events-none">
+            <span className="text-[10px] font-semibold text-gold-light tracking-wide uppercase block">
+              धरातल सत्यापन • {program.category}
+            </span>
+            <p className="text-xs sm:text-sm font-semibold line-clamp-2 drop-shadow-md mt-0.5">
+              🏆 {activeItem.caption}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Thumbnail Strip with PDF Photos */}
+      {galleryItems.length > 1 && (
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between text-xs text-charcoal-muted px-1">
+            <span className="font-semibold text-forest flex items-center gap-1.5 text-xs">
+              <Camera className="w-3.5 h-3.5" />
+              <span>PDF संलग्न फोटो व सम्मान पत्र ({galleryItems.length})</span>
+            </span>
+            <span className="text-[11px] text-charcoal-light">क्लिक करके बदलें</span>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            {galleryItems.map((item, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setSelectedIdx(idx)}
+                className={`relative rounded-xl overflow-hidden aspect-[4/3] border-2 transition-all group/thumb cursor-pointer ${
+                  selectedIdx === idx
+                    ? 'border-gold ring-2 ring-gold/40 scale-[1.02] shadow-sm'
+                    : 'border-white/90 opacity-70 hover:opacity-100 hover:border-forest/50'
+                }`}
+                title={item.caption}
+              >
+                <img
+                  src={item.url}
+                  alt={item.caption}
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-forest-deep/20 group-hover/thumb:bg-transparent transition-colors" />
+                <span className="absolute bottom-1 right-1 text-[9px] font-mono font-bold bg-black/75 text-white px-1 rounded">
+                  #{idx + 1}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Verified Program Context Banner */}
+      <div className="p-3 rounded-xl bg-white border border-ivory-border shadow-subtle text-xs text-charcoal-muted flex items-center justify-between">
+        <span className="font-medium">महासमुंद जिला धरातल संपुष्टि</span>
+        <span className="font-semibold text-forest flex items-center gap-1">
+          <CheckCircle2 className="w-3.5 h-3.5 text-forest" />
+          <span>PDF प्रमाणित अभिलेख</span>
+        </span>
+      </div>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <div
+            className="relative max-w-3xl w-full bg-forest-deep rounded-2xl overflow-hidden border border-gold/40 shadow-2xl p-4 sm:p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+              <div>
+                <span className="text-xs font-mono font-bold text-gold-light uppercase tracking-wider">
+                  {program.title} • PDF अभिलेख #{selectedIdx + 1}/{galleryItems.length}
+                </span>
+                <h4 className="text-white text-base sm:text-lg font-heading font-bold mt-0.5">
+                  {activeItem.caption}
+                </h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => setLightboxOpen(false)}
+                className="text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2 rounded-xl transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="max-h-[65vh] flex items-center justify-center overflow-hidden rounded-xl bg-black/40">
+              <img
+                src={activeItem.url}
+                alt={activeItem.caption}
+                className="max-h-[60vh] w-auto object-contain rounded-lg"
+              />
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-white/80">
+              <p className="italic">स्रोत: उन्नयन जन विकास समिति - 17 पृष्ठीय आधिकारिक संस्था प्रस्तुति (PDF Archive)</p>
+              <div className="flex gap-2">
+                {galleryItems.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setSelectedIdx(i)}
+                    className={`px-3 py-1 rounded text-xs font-semibold cursor-pointer transition-colors ${
+                      selectedIdx === i ? 'bg-gold text-forest-deep font-bold' : 'bg-white/10 text-white hover:bg-white/20'
+                    }`}
+                  >
+                    फोटो #{i + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

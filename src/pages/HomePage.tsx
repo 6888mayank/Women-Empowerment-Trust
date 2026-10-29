@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -25,9 +25,10 @@ import {
   Phone,
   Mail,
   MessageSquare,
-  Medal
+  Medal,
+  Camera
 } from 'lucide-react';
-import { ORG_DETAILS, CORE_PROGRAMS, CHALLENGES_LIST, APPROACH_PRINCIPLES, AWARDS_LIST } from '../data/content';
+import { ORG_DETAILS, CORE_PROGRAMS, CHALLENGES_LIST, APPROACH_PRINCIPLES, AWARDS_LIST, Program } from '../data/content';
 import SEOHead from '../components/SEOHead';
 import ProgramIllustration from '../components/ProgramIllustration';
 
@@ -181,17 +182,17 @@ export default function HomePage() {
             <div className="lg:col-span-5 space-y-4">
               <div className="relative rounded-2xl overflow-hidden shadow-card border-4 border-white">
                 <img
-                  src="/images/skill_development_class.png"
-                  alt="Rural women participating in vocational training class - Unnayan Jan Vikas Samiti"
-                  className="w-full h-72 sm:h-80 object-cover object-center"
+                  src="/images/awards/award_06_womens_day_janpad_gariaband.jpg"
+                  alt="Rural women participating in SHG cluster felicitation - Unnayan Jan Vikas Samiti"
+                  className="w-full h-72 sm:h-80 object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/85 via-transparent to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gold-light bg-forest/60 px-2 py-0.5 rounded">
-                    Field Activity
+                  <span className="text-xs font-semibold uppercase tracking-wider text-gold-light bg-forest/80 px-2.5 py-0.5 rounded backdrop-blur-xs">
+                    PDF प्रमाणित धरातल गतिविधि
                   </span>
                   <p className="text-sm font-medium mt-1">
-                    Hands-on vocational & community empowerment training in Mahasamund
+                    महिला स्व-सहायता समूह संवर्धन एवं नेतृत्व - महासमुंद, छत्तीसगढ़
                   </p>
                 </div>
               </div>
@@ -200,16 +201,16 @@ export default function HomePage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-xl overflow-hidden shadow-subtle border-2 border-white">
                   <img
-                    src="/images/candle_making_training.png"
-                    alt="Candle making livelihood training by Unnayan Samiti"
-                    className="w-full h-32 sm:h-36 object-cover"
+                    src="/images/awards/award_02_tankram_verma_minister.jpg"
+                    alt="Cabinet Minister Tank Ram Verma honoring Unnayan Samiti"
+                    className="w-full h-32 sm:h-36 object-cover object-top"
                   />
                 </div>
                 <div className="rounded-xl overflow-hidden shadow-subtle border-2 border-white">
                   <img
-                    src="/images/clean_village_oath.jpg"
-                    alt="Clean village community oath in Chhattisgarh"
-                    className="w-full h-32 sm:h-36 object-cover"
+                    src="/images/awards/award_01_naika_samman_2024.jpg"
+                    alt="NaiDunia Naika Samman 2024"
+                    className="w-full h-32 sm:h-36 object-cover object-top"
                   />
                 </div>
               </div>
@@ -237,46 +238,10 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Responsive 6-Card Grid */}
+          {/* Responsive 6-Card Grid with PDF Photo Switchers */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {CORE_PROGRAMS.map((program) => (
-              <div
-                key={program.id}
-                className="bg-white rounded-2xl border border-ivory-border overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col group hover:-translate-y-1"
-              >
-                {/* Program Card Thematic SVG Illustration */}
-                <ProgramIllustration
-                  programId={program.id}
-                  category={program.category}
-                  number={program.number}
-                  title={program.title}
-                />
-
-                {/* Program Card Content */}
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
-                    <div className="w-10 h-10 rounded-xl bg-sage/60 flex items-center justify-center text-forest mb-2">
-                      {getIcon(program.iconName)}
-                    </div>
-                    <h3 className="font-heading font-bold text-forest-deep text-lg sm:text-xl group-hover:text-forest transition-colors leading-snug">
-                      {program.title}
-                    </h3>
-                    <p className="text-charcoal-light text-xs sm:text-sm leading-relaxed line-clamp-3">
-                      {program.shortDesc}
-                    </p>
-                  </div>
-
-                  <div className="pt-2 border-t border-ivory-border">
-                    <Link
-                      to={`/programs#${program.id}`}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold font-heading text-forest hover:text-gold-dark transition-colors group-hover:gap-2"
-                    >
-                      <span>Explore Program Details</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <HomeProgramCard key={program.id} program={program} getIcon={getIcon} />
             ))}
           </div>
 
@@ -691,5 +656,130 @@ export default function HomePage() {
         </div>
       </section>
     </>
+  );
+}
+
+/**
+ * Interactive Program Card for Home Page
+ * Allows visitors to toggle between authentic photos extracted from the PDF presentation
+ */
+function HomeProgramCard({
+  program,
+  getIcon
+}: {
+  program: Program;
+  getIcon: (name: string) => React.ReactNode;
+}) {
+  const galleryItems = program.gallery && program.gallery.length > 0
+    ? program.gallery
+    : [{ url: program.image, caption: program.awardCaption || program.title }];
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activePhoto = galleryItems[activeIdx] || galleryItems[0];
+
+  return (
+    <div className="bg-white rounded-2xl border border-ivory-border overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col group hover:-translate-y-1">
+      {/* Photo Header */}
+      <div className="relative aspect-[16/11] bg-forest-deep overflow-hidden">
+        <img
+          src={activePhoto.url}
+          alt={activePhoto.caption || program.title}
+          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = program.image;
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/20 to-transparent pointer-events-none" />
+
+        {/* Top Badges */}
+        <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-1.5 pointer-events-none">
+          <span className="font-mono text-xs font-extrabold text-gold-light bg-forest-deep/95 border border-gold/40 px-2 py-0.5 rounded shadow-sm backdrop-blur-sm">
+            {program.number}
+          </span>
+          {program.badge && (
+            <span className="text-[10px] font-bold text-white bg-forest/90 backdrop-blur-sm px-2.5 py-0.5 rounded-full border border-white/20 truncate max-w-[200px] shadow-sm">
+              {program.badge}
+            </span>
+          )}
+        </div>
+
+        {/* Bottom Bar over Photo */}
+        <div className="absolute bottom-2.5 left-3 right-3 flex items-end justify-between text-white pointer-events-none">
+          <span className="text-[10px] font-semibold text-gold-light tracking-wide uppercase drop-shadow-sm">
+            {program.category}
+          </span>
+          <span className="text-[10px] font-medium bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs flex items-center gap-1">
+            <Camera className="w-3 h-3 text-gold-light" />
+            <span>PDF {activeIdx + 1}/{galleryItems.length}</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Mini Thumbnail Gallery Strip (PDF Photos Switcher) */}
+      {galleryItems.length > 1 && (
+        <div className="bg-sage/40 border-b border-ivory-border px-3.5 py-2 flex items-center justify-between gap-2">
+          <span className="text-[10px] font-semibold text-forest uppercase tracking-wider flex items-center gap-1">
+            <span>PDF फोटो:</span>
+          </span>
+          <div className="flex items-center gap-1.5">
+            {galleryItems.map((item, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveIdx(idx);
+                }}
+                className={`relative w-9 h-7 rounded-md overflow-hidden border transition-all cursor-pointer ${
+                  activeIdx === idx
+                    ? 'border-gold ring-2 ring-gold/40 scale-105 shadow-sm'
+                    : 'border-white/80 opacity-60 hover:opacity-100 hover:border-forest/50'
+                }`}
+                title={item.caption}
+              >
+                <img
+                  src={item.url}
+                  alt={item.caption}
+                  className="w-full h-full object-cover object-top"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Program Card Content */}
+      <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+        <div className="space-y-2">
+          <div className="w-10 h-10 rounded-xl bg-sage/60 flex items-center justify-center text-forest mb-2">
+            {getIcon(program.iconName)}
+          </div>
+          <h3 className="font-heading font-bold text-forest-deep text-lg sm:text-xl group-hover:text-forest transition-colors leading-snug">
+            {program.title}
+          </h3>
+          <p className="text-charcoal-light text-xs sm:text-sm leading-relaxed line-clamp-3">
+            {program.shortDesc}
+          </p>
+          <div className="pt-1">
+            <span className="text-[11px] text-forest font-semibold line-clamp-2 block bg-sage/30 p-2 rounded-lg border border-forest/10 leading-relaxed">
+              🏆 {activePhoto.caption || program.awardCaption}
+            </span>
+          </div>
+        </div>
+
+        <div className="pt-2 border-t border-ivory-border flex items-center justify-between">
+          <Link
+            to={`/programs#${program.id}`}
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold font-heading text-forest hover:text-gold-dark transition-colors group-hover:gap-2"
+          >
+            <span>Explore Program Details</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <span className="text-[10px] font-mono font-bold text-gold-dark bg-gold/10 px-2 py-0.5 rounded border border-gold/20">
+            PDF Verified
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }

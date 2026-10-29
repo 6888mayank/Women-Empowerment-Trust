@@ -10,6 +10,9 @@ export interface Program {
   image: string;
   category: string;
   iconName: string;
+  badge?: string;
+  awardCaption?: string;
+  gallery?: { url: string; caption: string }[];
 }
 
 export interface StrategicPhase {
@@ -87,7 +90,14 @@ export const CORE_PROGRAMS: Program[] = [
     title: "Women Empowerment & Leadership",
     category: "Social Leadership & Rights",
     iconName: "Users",
-    image: "/images/rural_shg_women.jpg",
+    image: "/images/awards/award_17_haribhoomi_women_canteen_1.jpg",
+    badge: "महिला स्व-सहायता समूह पहल (SHG Leadership)",
+    awardCaption: "उन्नयन समिति के महिला स्व-सहायता समूह (SHG) संवर्धन एवं नेतृत्व पहल",
+    gallery: [
+      { url: "/images/awards/award_17_haribhoomi_women_canteen_1.jpg", caption: "उन्नयन समिति महिला स्व-सहायता समूह संवर्धन" },
+      { url: "/images/awards/award_06_womens_day_janpad_gariaband.jpg", caption: "विजय विकास महिला संगठन - अंतर्राष्ट्रीय महिला दिवस सम्मान" },
+      { url: "/images/awards/award_01_naika_samman_2024.jpg", caption: "दैनिक समाचार पत्र नई दुनिया द्वारा नायिका सम्मान - 2024" }
+    ],
     shortDesc: "Support women's leadership, self-help group formation, financial literacy, women's rights awareness and active community decision-making.",
     fullDesc: "Women are the pillars of family and community resilience. Unnayan Jan Vikas Samiti focuses on mobilizing rural women into active Self-Help Groups (SHGs), nurturing grassroots leadership, imparting rights education, and building institutional self-confidence to enable equal participation in household and village governance.",
     objectives: [
@@ -114,7 +124,14 @@ export const CORE_PROGRAMS: Program[] = [
     title: "Skill Development & Sustainable Livelihoods",
     category: "Vocational & Economic Independence",
     iconName: "Briefcase",
-    image: "/images/candle_making_training.png",
+    image: "/images/awards/award_18_haribhoomi_jila_samvad_2.jpg",
+    badge: "महिला स्वरोजगार एवं कैंटीन उद्यम (Livelihood)",
+    awardCaption: "हरिभूमि न्यूज़ एजेंसी द्वारा महिला कैंटीन संचालित कर स्वरोजगार से जोड़ने हेतु सम्मान",
+    gallery: [
+      { url: "/images/awards/award_18_haribhoomi_jila_samvad_2.jpg", caption: "हरिभूमि न्यूज़ एजेंसी द्वारा महिला कैंटीन स्वरोजगार सम्मान" },
+      { url: "/images/awards/award_09_vv_giri_national_labour_institute.jpg", caption: "वी.वी. गिरि राष्ट्रीय श्रम संस्थान नोएडा द्वारा आजीविका व श्रम प्रमाणन" },
+      { url: "/images/awards/award_02_tankram_verma_minister.jpg", caption: "मान. कैबिनेट मंत्री टंकराम वर्मा द्वारा युवा एवं कौशल विकास सम्मान" }
+    ],
     shortDesc: "Highlight vocational training, candle making, traditional product development, rural entrepreneurship and income-generation opportunities.",
     fullDesc: "Ensuring rural women have sustainable income options within their own villages and homes is central to our work. We offer hands-on livelihood training in crafting indigenous items—such as candle making, traditional crafts, and allied home-based production—that command steady demand and remunerative market value.",
     objectives: [
@@ -141,7 +158,14 @@ export const CORE_PROGRAMS: Program[] = [
     title: "Education & Child Welfare",
     category: "Foundational Community Future",
     iconName: "GraduationCap",
-    image: "/images/education_girls.jpg",
+    image: "/images/awards/award_11_republic_day_mp_award.jpg",
+    badge: "सशक्तिकरण एवं बालिका कल्याण सम्मान पत्र (MP Citation)",
+    awardCaption: "माननीय सांसद महोदया द्वारा बालिका कल्याण एवं महिला सशक्तिकरण सम्मान पत्र",
+    gallery: [
+      { url: "/images/awards/award_11_republic_day_mp_award.jpg", caption: "गणतंत्र दिवस समारोह में मान. सांसद महोदया द्वारा सम्मान पत्र" },
+      { url: "/images/awards/award_03_renuka_singh_union_minister.jpg", caption: "केन्द्रीय मंत्री श्रीमती रेणुका सिंह द्वारा बालिका व महिला खेलकूद/शिक्षा सम्मान" },
+      { url: "/images/awards/award_13_sahbhagi_shikshan_kendra_lucknow.jpg", caption: "सहभागी शिक्षण केन्द्र लखनऊ द्वारा बाल विकास व संस्थागत क्षमता निर्माण सम्मान" }
+    ],
     shortDesc: "Showcase educational awareness, girls' education, child rights, adolescent awareness, nutrition and child welfare initiatives.",
     fullDesc: "Education is the most transformative lever for generational poverty alleviation. We work closely with rural families and children to eliminate barriers to schooling, champion adolescent girl education, organize awareness on child protection, and promote essential nutrition and wellbeing.",
     objectives: [
@@ -168,7 +192,14 @@ export const CORE_PROGRAMS: Program[] = [
     title: "Community Health & Sanitation",
     category: "Preventive Care & Hygiene",
     iconName: "HeartPulse",
-    image: "/images/clean_village_oath.jpg",
+    image: "/images/awards/award_08_republic_day_food_minister.jpg",
+    badge: "खाद्य, पोषण एवं स्वास्थ्य सम्मान (Govt. Honor)",
+    awardCaption: "मान. खाद्य एवं जिला प्रभारी मंत्री द्वारा ग्रामीण पोषण व स्वास्थ्य कल्याण सम्मान",
+    gallery: [
+      { url: "/images/awards/award_08_republic_day_food_minister.jpg", caption: "खाद्य एवं जिला प्रभारी मंत्री छ.ग. शासन द्वारा सम्मान" },
+      { url: "/images/awards/award_14_chief_municipal_officer.jpg", caption: "मुख्य नगर पालिका अधिकारी द्वारा स्वच्छता एवं जनस्वास्थ्य सम्मान पत्र" },
+      { url: "/images/awards/award_16_nagar_palika_president.jpg", caption: "नगर पालिका अध्यक्ष द्वारा जनस्वास्थ्य व स्वच्छता सेवा सम्मान" }
+    ],
     shortDesc: "Highlight preventive healthcare awareness, hygiene, sanitation, clean village pledges and community wellbeing.",
     fullDesc: "Good health is the foundation of community dignity and productivity. Our health and sanitation initiatives emphasize preventive healthcare, maternal and menstrual hygiene awareness, safe drinking water practices, and collective community action—such as clean village oaths—to prevent infectious diseases.",
     objectives: [
@@ -195,7 +226,14 @@ export const CORE_PROGRAMS: Program[] = [
     title: "Agriculture & Rural Sustainability",
     category: "Agrarian Resilience & Ecology",
     iconName: "Sprout",
-    image: "/images/women_agriculture.jpg",
+    image: "/images/awards/award_04_nabard_raipur.jpg",
+    badge: "नाबार्ड रायपुर द्वारा सम्मानित (NABARD Honor)",
+    awardCaption: "राष्ट्रीय कृषि एवं ग्रामीण विकास बैंक (नाबार्ड) रायपुर द्वारा सम्मान",
+    gallery: [
+      { url: "/images/awards/award_04_nabard_raipur.jpg", caption: "नाबार्ड रायपुर द्वारा कृषि एवं ग्रामीण विकास सम्मान" },
+      { url: "/images/awards/award_15_womens_day_nabard.jpg", caption: "अंतर्राष्ट्रीय महिला दिवस पर नाबार्ड द्वारा महिला किसान सम्मान" },
+      { url: "/images/awards/award_05_mla_mahasamund.jpg", caption: "माननीय विधायक महासमुंद द्वारा कृषक एवं ग्रामीण कल्याण सम्मान" }
+    ],
     shortDesc: "Feature farmer training, recognition of women farmers, organic farming awareness, water conservation and environmental protection.",
     fullDesc: "Rural livelihoods are deeply intertwined with the land. Unnayan Jan Vikas Samiti actively champions the principle that 'the term farmer refers not just to males but also to females.' We deliver farmer training on organic techniques, water conservation, natural soil health, and eco-friendly agrarian practices.",
     objectives: [
@@ -222,7 +260,14 @@ export const CORE_PROGRAMS: Program[] = [
     title: "Digital & Financial Inclusion",
     category: "Modern Economic Integration",
     iconName: "Smartphone",
-    image: "/images/digital_literacy.jpg",
+    image: "/images/awards/award_10_mahila_sahkari_bank.jpg",
+    badge: "सहकारी बैंक व वित्तीय साक्षरता (Financial Literacy)",
+    awardCaption: "महिला नागरिक सहकारी बैंक मर्यादित द्वारा उद्यमिता व वित्तीय साक्षरता शिविर सम्मान",
+    gallery: [
+      { url: "/images/awards/award_10_mahila_sahkari_bank.jpg", caption: "महिला नागरिक सहकारी बैंक उद्यमिता व वित्तीय साक्षरता शिविर" },
+      { url: "/images/awards/award_12_state_award_avanti_bai_lodhi.jpg", caption: "छत्तीसगढ़ शासन राज्य अलंकरण - वीरांगना रानी अवंती बाई लोधी स्मृति सम्मान" },
+      { url: "/images/awards/award_07_womens_day_nagar_palika.jpg", caption: "नगर पालिका परिषद महिला सशक्तिकरण एवं वित्तीय स्वावलंबन सम्मान" }
+    ],
     shortDesc: "Highlight digital literacy, banking awareness, financial literacy and access to relevant government welfare information.",
     fullDesc: "Access to the digital and formal financial ecosystem is a basic right in modern India. We bridge the digital divide by training rural women and youth in basic smartphone usage, bank account digitization, Aadhaar-enabled services, digital payments, and navigating government welfare entitlements securely.",
     objectives: [
