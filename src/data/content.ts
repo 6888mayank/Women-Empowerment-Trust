@@ -504,7 +504,7 @@ export const AWARDS_LIST: AwardItem[] = [
     image: "/images/awards/award_12_state_award_avanti_bai_lodhi.jpg",
     titleHi: "छत्तीसगढ़ राज्य अलंकरण - वीरांगना रानी अवंती बाई लोधी स्मृति पुरस्कार",
     titleEn: "Chhattisgarh State Decoration Award — Veerangana Rani Avanti Bai Lodhi Smriti Puraskar",
-    presentedBy: "माननीय उपराष्ट्रपति / राज्यपाल श्री सी.पी. राधाकृष्णन जी द्वारा प्रदत्त",
+    presentedBy: "माननीय उपराष्ट्रपति श्री सी.पी. राधाकृष्णन जी द्वारा प्रदत्त",
     category: "State Award",
     year: "5 नवंबर",
     badge: "सर्वोच्च राज्य अलंकरण (State Award)",

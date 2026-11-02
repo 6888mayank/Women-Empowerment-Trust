@@ -131,7 +131,7 @@ export default function LeadershipPage() {
                       <span>सर्वोच्च राज्य अलंकरण (State Award)</span>
                     </div>
                     <p className="text-white font-medium text-xs leading-relaxed">
-                      वीरांगना रानी अवंती बाई लोधी स्मृति पुरस्कार — माननीय उपराष्ट्रपति / राज्यपाल द्वारा प्रदत्त
+                      वीरांगना रानी अवंती बाई लोधी स्मृति पुरस्कार — माननीय उपराष्ट्रपति द्वारा प्रदत्त
                     </p>
                   </div>
 
